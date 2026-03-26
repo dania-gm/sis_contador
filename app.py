@@ -591,7 +591,7 @@ if uploaded_excel is not None:
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
 
-hoja12_plantilla = 	st.file_uploader("Sube Excel Hoja 1", type=['xlsx'], key="uploader_hoja12")
+hoja12_plantilla = 	st.file_uploader("Sube Excel Hoja 12", type=['xlsx'], key="uploader_hoja12")
 if hoja12_plantilla is not None:
     wb = load_workbook(hoja12_plantilla)
     ws = wb.active
