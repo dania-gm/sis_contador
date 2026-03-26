@@ -17,7 +17,7 @@ uploaded_files = st.file_uploader(
 if uploaded_files:
     for file in uploaded_files:
         df = pd.read_excel(file,skiprows=14, header=None)
-        df_prueba = df[[7,8,20]]
+        df_prueba = df[[7,8,20,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,40,41,42,43,44,45,46,47]]
 
         for i in range(0,len(df_prueba), tam_bloque):
             bloque = df_prueba.iloc[i:i+tam_bloque]
@@ -37,11 +37,134 @@ if uploaded_files:
                     tipo = int(tipo_float)
                 except:
                     edad = None 
+            dete_placa = fila[24]
+            cepillado = fila[25]
+            hilo = fila[26]
+            fluor = fila[27]
+            barniz = fila[28]
+            limpieza = fila[29]
+            raspado = fila[30]
+            protesis = fila[31]
+            tejidos = fila[32]
+            selladores_float = fila[34]
+            if pd.notna(selladores_float):
+                try:
+                    selladores = int(selladores_float)
+                except:
+                    selladores = 0
+            else:
+                selladores = 0
+            amalgamas_float = fila[35]
+            if pd.notna(amalgamas_float):
+                try:
+                    amalgamas = int(amalgamas_float)
+                except:
+                    amalgamas = 0
+            else:
+                amalgamas = 0
+            resinas_float = fila[36]
+            if pd.notna(resinas_float):
+                try:
+                    resinas = int(resinas_float)
+                except:
+                    resinas = 0
+            else:
+                resinas = 0
+            ionomeros_float = fila[37]
+            if pd.notna(ionomeros_float):
+                try:
+                    ionomeros = int(ionomeros_float)
+                except:
+                    ionomeros = 0
+            else:
+                ionomeros = 0
+            alcasite_float = fila[38]
+            if pd.notna(alcasite_float):
+                try:
+                    alcasite = int(alcasite_float)
+                except:
+                    alcasite = 0
+            else:
+                alcasite = 0
+            material_float = fila[39]
+            if pd.notna(material_float):
+                try:
+                    material = int(material_float)
+                except:
+                    material = 0
+            else:
+                material = 0
+            diente_temp_float = fila[40]
+            if pd.notna(diente_temp_float):
+                try:
+                    diente_temp = int(diente_temp_float)
+                except:
+                    diente_temp = 0
+            else:
+                diente_temp = 0
+            diente_perm_float = fila[41]
+            if pd.notna(diente_perm_float):
+                try:
+                    diente_perm = int(diente_perm_float)
+                except:
+                    diente_perm = 0
+            else:
+                diente_perm = 0
+            terapia_pulpar_float = fila[42]
+            if pd.notna(terapia_pulpar_float):
+                try:
+                    terapia_pulpar = int(terapia_pulpar_float)
+                except:
+                    terapia_pulpar = 0
+            else:
+                terapia_pulpar = 0
+            cirugia = fila[43]
+            farma = fila[44]
+            otras_float = fila[45]
+            if pd.notna(otras_float):
+                try:
+                    otras = int(otras_float)
+                except:
+                    otras = 0
+            else:
+                otras = 0
+            rx_float = fila[46]
+            if pd.notna(rx_float):
+                try:
+                    rx = int(rx_float)
+                except:
+                    rx = 0
+            else:
+                rx = 0
+            terminado = fila[47]
+            
             if pd.notna(sexo):
                 pacientes.append({
                     "edad" : edad,
                     "sexo" : sexo,
-                    "tipo" : tipo
+                    "tipo" : tipo,
+                    "dete_placa" : dete_placa,
+                    "cepillado" : cepillado,
+                    "hilo" : hilo,
+                    "fluor" : fluor,
+                    "barniz": barniz,
+                    "limpieza": limpieza,
+                    "raspado": raspado,
+                    "protesis": protesis,
+                    "tejidos":tejidos,
+                    "selladores":selladores,
+                    "amalgamas" : amalgamas,
+                    "resinas" : resinas,
+                    "alcasite" : alcasite,
+                    "material": material,
+                    "diente_temp":diente_temp,
+                    "diente_perm" : diente_perm,
+                    "terapia_pulpar":terapia_pulpar,
+                    "cirugia" : cirugia,
+                    "farma" : farma,
+                    "otras" : otras,
+                    "rx" : rx,
+                    "terminado" : terminado
                 })
 
 nuevo_df = pd.DataFrame(pacientes)
@@ -96,11 +219,176 @@ hs_50_59 = 0
 hs_60 = 0
 
 
+deteccion_placa = {
+    "< de 10 años" : 0,
+    "10 a 19 años" : 0,
+    "20-59 años" : 0,
+    "60 y más años" : 0
+}
+
+instruccion_cepillado = {
+    "< de 10 años" : 0,
+    "10 a 19 años" : 0,
+    "20-59 años" : 0,
+    "60 y más años" : 0
+}
+
+instruccion_hilo = {
+    "< de 10 años" : 0,
+    "10 a 19 años" : 0,
+    "20-59 años" : 0,
+    "60 y más años" : 0
+}
+
+fluor_topica = 0
+
+barniz_fluor = {
+    "1 a 5 años de edad" : 0,
+    "6 a 19 años de edad" : 0,
+    "20 y más años de edad" : 0
+}
+
+pulido_dental = {
+    "< de 10 años" : 0,
+    "10 a 19 años" : 0,
+    "20-59 años" : 0,
+    "60 y más años" : 0
+}
+
+raspado_alisado = 0
+higiene_protesis = 0
+tejidos_bucales = 0
+#autoexamen = 0
+#recibieron_orientacion = 0
+fosetas_fisuras = 0
+amalgamas_total = 0
+resinas_total = 0
+ionomeros_total = 0
+alcasites_total = 0
+material_total = 0
+diente_temp_total = 0
+diente_perm_total = 0
+terapia_pulpar_total = 0
+cirugia_total = 0
+farmacoterapia_total = 0
+otras_total = 0
+rx_total = 0
+terminado_total = 0
+
 for _, row in nuevo_df.iterrows():
     sexo = row['sexo']
     tipo = row['tipo']
     edad = row['edad']
-
+    dete_placa = row['dete_placa']
+    cepillado = row['cepillado']
+    hilo = row['hilo']
+    fluor = row['fluor']
+    barniz = row['barniz']
+    limpieza = row['limpieza']
+    raspado = row['raspado']
+    protesis = row['protesis']
+    tejidos = row['tejidos']
+    selladores = row['selladores']
+    amalgamas = row['amalgamas']
+    resinas = row['resinas']
+    alcasite = row['alcasite']
+    material = row['material']
+    diente_temp = row['diente_temp']
+    diente_perm = row['diente_perm']
+    terapia_pulpar = row['terapia_pulpar']
+    cirugia = row['cirugia']
+    farma = row['farma']
+    otras = row['otras']
+    rx = row['rx']
+    terminado = row['terminado']
+    
+    
+    #deteccion placa
+    if edad < 10:
+        if dete_placa == 'SI':
+            deteccion_placa['< de 10 años'] += 1
+        if cepillado == 'SI':
+            instruccion_cepillado['< de 10 años'] += 1
+        if hilo == 'SI':
+            instruccion_hilo['< de 10 años'] += 1
+        if limpieza == 'SI':
+            pulido_dental['< de 10 años'] += 1
+    elif edad >= 10 and edad <= 19:
+        if dete_placa == 'SI':
+            deteccion_placa['10 a 19 años'] += 1
+        if cepillado == 'SI':
+            instruccion_cepillado['10 a 19 años'] += 1
+        if hilo == 'SI':
+            instruccion_hilo['10 a 19 años'] += 1
+        if limpieza == 'SI':
+            pulido_dental['10 a 19 años'] += 1
+    elif edad >= 20 and edad <= 59:
+        if dete_placa == 'SI':
+            deteccion_placa['20-59 años'] += 1
+        if cepillado == 'SI':
+            instruccion_cepillado['20-59 años'] += 1
+        if hilo == 'SI':
+            instruccion_hilo['20-59 años'] += 1
+        if limpieza == 'SI':
+            pulido_dental['20-59 años'] += 1
+    elif edad >= 60:
+        if dete_placa == 'SI':
+            deteccion_placa['60 y más años'] += 1
+        if cepillado == 'SI':
+            instruccion_cepillado['60 y más años'] += 1
+        if hilo == 'SI':
+            instruccion_hilo['60 y más años'] += 1
+        if limpieza == 'SI':
+            pulido_dental['60 y más años'] += 1
+    
+    
+            
+    if fluor == 'SI':
+        fluor_topica += 1
+    
+    #barniz fluor
+    if edad >= 1 and edad <= 5:
+        if barniz == 'SI':
+            barniz_fluor['1 a 5 años de edad'] += 1
+    elif edad >= 6 and edad <= 19:
+        if barniz == 'SI':
+            barniz_fluor['6 a 19 años de edad'] += 1
+    elif edad >= 20:
+        if barniz == 'SI':
+            barniz_fluor['20 y más años de edad'] += 1       
+    
+    if raspado == 'SI':
+        raspado_alisado += 1
+    
+    if protesis == 'SI':
+        higiene_protesis += 1
+    
+    if tejidos == 'SI':
+        tejidos_bucales += 1
+    
+    #if recibieron_orientacion == 'SI':
+    
+    fosetas_fisuras += selladores
+    amalgamas_total += amalgamas
+    resinas_total += resinas
+    ionomeros_total += ionomeros
+    alcasites_total += alcasite
+    material_total += material
+    diente_temp_total += diente_temp
+    diente_perm_total += diente_perm
+    terapia_pulpar_total += terapia_pulpar
+    
+    if cirugia == 'SI':
+        cirugia_total += 1
+    if farma == 'SI':
+        farmacoterapia_total += 1
+    if otras == 'SI':
+        otras_total += 1
+    if rx == 'SI':
+        rx_total += 1
+    if terminado == 'SI':
+        terminado_total += 1
+    
     if sexo == "MUJER":
         if tipo == 0:
             mujeres_p += 1
@@ -224,8 +512,59 @@ datos = {
 # Convertir a DataFrame en formato largo
 df_long = pd.DataFrame(list(datos.items()), columns=["Etiqueta", "Valor"])
 
+hoja_12 = {
+    #deteccion placa
+    "d_< de 10 años": deteccion_placa['< de 10 años'],
+    "d_10 a 19 años": deteccion_placa['10 a 19 años'],
+    "d_20-59 años": deteccion_placa['20-59 años'],
+    "d_60 y más años": deteccion_placa['60 y más años'],
+    #instruccion cepillado
+    "i_< de 10 años": instruccion_cepillado['< de 10 años'],
+    "i_10 a 19 años": instruccion_cepillado['10 a 19 años'],
+    "i_20-59 años": instruccion_cepillado['20-59 años'],
+    "i_60 y más años": instruccion_cepillado['60 y más años'],
+    #instruccion hilo
+    "h_< de 10 años": instruccion_hilo['< de 10 años'],
+    "h_10 a 19 años": instruccion_hilo['10 a 19 años'],
+    "h_20-59 años": instruccion_hilo['20-59 años'],
+    "h_60 y más años": instruccion_hilo['60 y más años'],
+    #fluor
+    "aplicación tópica": fluor_topica,
+    #aplicacion barniz
+    "a_1 a 5 años de edad": barniz_fluor['1 a 5 años de edad'],	
+    "a_6 a 19 años de edad": barniz_fluor['6 a 19 años de edad'],
+    "a_20 y más años de edad": barniz_fluor['20 y más años de edad'],
+    #pulido dental
+    "p_< de 10 años": pulido_dental['< de 10 años'],
+    "p_10 a 19 años": pulido_dental['10 a 19 años'],
+    "p_20-59 años": pulido_dental['20-59 años'],
+    "p_60 y más años": pulido_dental['60 y más años'],
+    #Raspado y alisado radicular 				
+    "Raspado y alisado radicular": raspado_alisado,
+    #Revisión
+    "Higiene de prótesis": higiene_protesis,	
+    "Tejidos bucales":tejidos_bucales,
+    "Personas que recibieron orientación de Salud bucal": total_pacientes,
+    "Autoexamen de cavidad bucal": total_pacientes,
+    "Fosetas y fisuras":fosetas_fisuras,
+    "Amalgama":amalgamas_total,
+    "Resina":resinas_total,
+    "Ionómero de vidrio":ionomeros_total,
+    "Alcasite":alcasites_total,
+    "Material temporal":material_total,
+    "Diente temporal":diente_temp_total,
+    "Diente permanente":diente_perm_total,
+    "Terapia pulpar":terapia_pulpar_total,
+    "Cirugía bucal":cirugia_total,
+    "Farmacoterapia":farmacoterapia_total,
+    "Otras atenciones":otras_total,
+    "Radiografías":rx_total,
+    "Tratamiento integral terminado":terminado_total
+}
 
-uploaded_excel = st.file_uploader("Sube el Excel base", type=['xlsx'])
+hoja_12_long = pd.DataFrame(list(hoja_12.items()), columns=["Etiqueta", "Valor"])
+
+uploaded_excel = st.file_uploader("Sube Excel Hoja 1", type=['xlsx'], key="uploader_hoja1")
 
 if uploaded_excel is not None:
     # Cargar libro en memoria
@@ -250,4 +589,29 @@ if uploaded_excel is not None:
         data=output,
         file_name="conteo_mes_actualizado.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )		
+    )
+
+hoja12_plantilla = 	st.file_uploader("Sube Excel Hoja 1", type=['xlsx'], key="uploader_hoja12")
+if hoja12_plantilla is not None:
+    wb = load_workbook(hoja12_plantilla)
+    ws = wb.active
+
+    # Tomar los valores del DataFrame
+    valores = hoja_12_long["Valor"].tolist()
+
+    # Escribir en la columna D (puedes cambiar la letra si quieres)
+    for i, val in enumerate(valores, start=2):
+        ws[f"J{i}"] = val
+
+    # Guardar en un objeto BytesIO para descargar
+    output = BytesIO()
+    wb.save(output)
+    output.seek(0)
+
+    # Botón de descarga en Streamlit
+    st.download_button(
+        label="Descargar Excel actualizado",
+        data=output,
+        file_name="hoja12_actualizado.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
